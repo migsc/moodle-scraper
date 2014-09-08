@@ -3,6 +3,8 @@ moodle-scraper
 
 A quick and dirty PHP script to download important course files and pages from moodle.
 
+Only made this way because my school's moodle site didn't support [web services](https://docs.moodle.org/dev/Web_services_Roadmap). That being said, if you know the moodle site does/can support it, I recommend finding some other implementation.
+
 
 Installation and Usage
 ==============
