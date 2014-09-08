@@ -1,0 +1,10 @@
+{
+    "require": {
+        "guzzle/guzzle": "3.9.*@dev",
+        "guzzlehttp/guzzle": "4.*",
+        "electrolinux/phpquery": "dev-master"
+    },
+    "autoload": {
+        "moodle-scraper": {"MoodleScraper\\": "/"}
+    }
+}
