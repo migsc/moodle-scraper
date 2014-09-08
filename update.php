@@ -43,7 +43,7 @@ function toFileName($str)
     return preg_replace('/[^\w\.\-]+/', '', $snakeCased);
 }
 
-$client = new GuzzleClient('https://moodle.cis.fiu.edu');
+$client = new GuzzleClient($config['moodleHost']);
 $cookiePlugin = new CookiePlugin(new ArrayCookieJar());
 $client->addSubscriber($cookiePlugin);
 
@@ -60,7 +60,7 @@ $instanceMatches = [];
 preg_match(REGEX_SESSKEY, $res->getBody(), $sessKeyMatches);
 preg_match(REGEX_INSTANCE, $res->getBody(), $instanceMatches);
 $defaultFormData = [
-  'sesske' => str_replace(['"sesskey":"', '"'], '', $sessKeyMatches[0]),
+  'sesskey' => str_replace(['"sesskey":"', '"'], '', $sessKeyMatches[0]),
   'instance' => str_replace(['"instance":"', '"'], '', $instanceMatches[0]),
 ];
 
@@ -116,7 +116,7 @@ foreach($config['classes'] as $code => $class)
             {
                 if(count(glob("$folderTargetPath/{$resource->key}-*")) > 0) continue;
 
-                $tmpFile = tempnam(sys_get_temp_dir(), 'guzzle-download');
+                $tmpFile = tempnam(sys_get_temp_dir(), 'moodle-scraper-download');
                 $fileHandle = fopen($tmpFile, 'w');
 
                 $resFile =  $client
